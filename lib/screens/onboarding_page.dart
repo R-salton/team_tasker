@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:team_tasker/components/widgets.dart';
 import 'package:team_tasker/constants/constants.dart';
 import 'package:team_tasker/screens/home.dart';
+import 'package:team_tasker/screens/login.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
@@ -31,12 +32,12 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 controller: _controller,
                 children: [
                   OnBoardWidget(
-                      Color: kSecondaryColor,
-                      title: 'Collaborate Seamlessly with Your Team',
-                      subTitle:
-                          "Introduce users to the app's core purpose, highlighting its focus on teamwork and collaboration.",
-                      images:
-                          Lottie.asset('assets/animation/collaborate.json')),
+                    Color: kSecondaryColor,
+                    title: 'Collaborate Seamlessly with Your Team',
+                    subTitle:
+                        "Introduce users to the app's core purpose, highlighting its focus on teamwork and collaboration.",
+                    images: Lottie.asset('assets/animation/collaborate.json'),
+                  ),
                   OnBoardWidget(
                     title: 'Track Tasks and Meet Deadlines Efficiently',
                     subTitle:
@@ -62,7 +63,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return const Home();
+                            return const Login();
                           }));
                         },
                         child: const Text('Skip', style: kMediumHeader),
@@ -78,80 +79,28 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {
-                            _controller.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn);
-                          },
-                          child: onLastPage
-                              ? const Text(
+                        onTap: () {
+                          _controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeIn);
+                        },
+                        child: onLastPage
+                            ? GestureDetector(
+                                child: const Text(
                                   'Done',
                                   style: kMediumHeader,
-                                )
-                              : const Text(
-                                  'Next',
-                                  style: kMediumHeader,
-                                ))
+                                ),
+                              )
+                            : const Text(
+                                'Next',
+                                style: kMediumHeader,
+                              ),
+                      ),
                     ]),
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class OnBoardWidget extends StatelessWidget {
-  final Color;
-  final String title;
-  final String subTitle;
-  LottieBuilder images;
-  OnBoardWidget(
-      {super.key,
-      required this.title,
-      required this.subTitle,
-      this.Color,
-      required this.images});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 100.h, left: 30.w, right: 30.w),
-      color: Color,
-      child: Column(
-        children: [
-          Center(child: images),
-          SizedBox(
-            height: 15.h,
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  textAlign: TextAlign.center,
-                  title,
-                  style: kHeadingStyle,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  textAlign: TextAlign.center,
-                  "Introduce users to the app's core purpose, highlighting its focus on teamwork and collaboration.",
-                  style: TextStyle(
-                    color: kLigterText,
-                    fontSize: 18,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
       ),
     );
   }
