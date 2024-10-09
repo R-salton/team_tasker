@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:team_tasker/constants/constants.dart';
+import 'package:team_tasker/views/constants/constants.dart';
 
 class OnBoardWidget extends StatelessWidget {
   final Color;

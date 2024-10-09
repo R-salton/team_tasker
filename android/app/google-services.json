@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694187256039",
+    "project_id": "teamtasker-b9657",
+    "storage_bucket": "teamtasker-b9657.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694187256039:android:a28b9477e5430f3b469a42",
+        "android_client_info": {
+          "package_name": "com.example.team_tasker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj4qVNQImxvYTL46M16EgCRmiQzxZw88o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

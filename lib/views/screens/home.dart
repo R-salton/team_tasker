@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:team_tasker/constants/constants.dart';
+import 'package:team_tasker/views/constants/constants.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

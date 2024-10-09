@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:team_tasker/components/widgets.dart';
-import 'package:team_tasker/constants/constants.dart';
-import 'package:team_tasker/screens/login.dart';
+import 'package:team_tasker/views/components/widgets.dart';
+import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/login.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});

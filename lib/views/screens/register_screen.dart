@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:team_tasker/components/widgets.dart';
-import 'package:team_tasker/constants/constants.dart';
-import 'package:team_tasker/screens/login.dart';
+import 'package:team_tasker/views/components/widgets.dart';
+import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/login.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

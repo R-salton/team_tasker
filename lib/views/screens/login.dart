@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:team_tasker/components/widgets.dart';
-import 'package:team_tasker/constants/constants.dart';
-import 'package:team_tasker/screens/register_screen.dart';
+import 'package:team_tasker/controller/auth_controller.dart';
+import 'package:team_tasker/views/components/widgets.dart';
+import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/register_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final AuthController _signInWithGoogle = AuthController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -135,9 +137,19 @@ class _LoginState extends State<Login> {
                       border: Border.all(color: kWhiteColor, width: 1.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Image(
-                      height: 40.h,
-                      image: const AssetImage('assets/images/google.png'),
+                    child: GestureDetector(
+                      onTap: () async {
+                        try {
+                          _signInWithGoogle.signIn();
+                          print("Successfull signup");
+                        } catch (e) {
+                          print(e);
+                        }
+                      },
+                      child: Image(
+                        height: 40.h,
+                        image: const AssetImage('assets/images/google.png'),
+                      ),
                     ),
                   ),
                   SizedBox(
