@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/components/widgets.dart';
 import 'package:team_tasker/constants/constants.dart';
-import 'package:team_tasker/screens/register_screen.dart';
+import 'package:team_tasker/screens/login.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
-  static String id = "login";
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
+  static String id = "RegisterScreen";
 
   @override
-  State<Login> createState() => _LoginState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -26,7 +27,7 @@ class _LoginState extends State<Login> {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const Icon(
-                Icons.lock,
+                Icons.book_online,
                 size: 100,
                 color: kSecondaryColor,
               ),
@@ -36,7 +37,14 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: const Text(
-                  'Welcome back you\'ve been missed!',
+                  'Create an Account',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: const Text(
+                  'Enter your full details',
                   style: kMiniHeadingStyle,
                 ),
               ),
@@ -47,49 +55,66 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: MyTextField(
                   controller: _emailController,
-                  hint: "Username",
+                  hint: "First name",
                   obsecure: false,
                 ),
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 10.h),
               Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 25.w,
-                  ),
-                  child: MyTextField(
-                    controller: _passwordController,
-                    hint: "Password",
-                    obsecure: true,
-                  )),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                ),
+                child: MyTextField(
+                  controller: _passwordController,
+                  hint: "Last name",
+                  obsecure: false,
+                ),
+              ),
+
               SizedBox(
                 height: 10.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                ),
+                child: MyTextField(
+                  controller: _passwordController,
+                  hint: "Email",
+                  inputType: TextInputType.emailAddress,
+                  obsecure: false,
+                ),
               ),
 
               // Forgotten Button
 
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.w),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgotten password?',
-                      style: TextStyle(color: kLigterText, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(
-                height: 25.h,
+                height: 10.h,
               ),
 
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                ),
+                child: MyTextField(
+                  controller: _passwordController,
+                  hint: "Password",
+                  obsecure: true,
+                ),
+              ),
+
+              SizedBox(
+                height: 25.w,
+              ),
               // Login Button
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Mybtn(
-                  title: "Sign in",
-                  onTap: () {},
+                  title: "Create account",
+                  onTap: () {
+                    // Action S when Clicked
+                  },
                 ),
               ),
               SizedBox(
@@ -167,7 +192,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Don\'t have an account? ',
+                    'Have an account? ',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
@@ -175,12 +200,12 @@ class _LoginState extends State<Login> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RegisterScreen.id);
+                      Navigator.pushNamed(context, Login.id);
                     },
                     child: const Text(
-                      'Sign Up',
+                      'Sing In',
                       style: TextStyle(
-                          color: kLightBlue,
+                          color: Colors.blue,
                           fontSize: 18,
                           fontWeight: FontWeight.w700),
                     ),

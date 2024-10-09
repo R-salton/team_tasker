@@ -24,6 +24,7 @@ flutter:
 
   assets:
     - assets/animation/
+    - assets/images/
 
   fonts:
     - family: ProximaNova

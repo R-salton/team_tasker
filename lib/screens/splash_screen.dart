@@ -5,6 +5,8 @@ import 'package:team_tasker/screens/onboarding_page.dart';
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
+    static String id = "splashScreen";
+
 
   @override
   Widget build(BuildContext context) {

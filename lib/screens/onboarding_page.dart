@@ -3,11 +3,11 @@ import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:team_tasker/components/widgets.dart';
 import 'package:team_tasker/constants/constants.dart';
-import 'package:team_tasker/screens/home.dart';
 import 'package:team_tasker/screens/login.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
+   static String id = "onboarding";
 
   @override
   State<OnBoardScreen> createState() => _OnBoardScreenState();
@@ -15,10 +15,13 @@ class OnBoardScreen extends StatefulWidget {
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
   final PageController _controller = PageController();
+   
+
   bool onLastPage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
           child: Stack(
