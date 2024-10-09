@@ -61,23 +61,32 @@ class OnBoardWidget extends StatelessWidget {
 // TExt Fied
 
 class MyTextField extends StatelessWidget {
-  const MyTextField({
-    super.key,
-  });
+  final controller;
+  final hint;
+  bool obsecure = false;
+  MyTextField(
+      {super.key,
+      required this.obsecure,
+      required this.controller,
+      required this.hint});
 
   @override
   Widget build(BuildContext context) {
-    return const TextField(
+    return TextField(
+      style: const TextStyle(
+          color: kSecondaryColor, fontSize: 18, fontWeight: FontWeight.w600),
+      obscureText: obsecure,
       decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kLigterText),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: kPrimaryColor),
-        ),
-        // fillColor: Color.fromARGB(255, 80, 80, 80),
-        // filled: true,
-      ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kWhiteColor, width: 1.5.w),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade400, width: 1.5.w),
+          ),
+          fillColor: kWhiteColor,
+          filled: true,
+          hintText: hint,
+          hintStyle: const TextStyle(color: kLigterText)),
     );
   }
 }
@@ -90,14 +99,21 @@ class Mybtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kLightBlue,
-      child: const Padding(
-        
-        padding: EdgeInsets.all(15.0),
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-              color: kPrimaryColor, fontSize: 22, fontWeight: FontWeight.w700),
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: kSecondaryColor,
+      ),
+      child: const Center(
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Text(
+            'LOGIN',
+            style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w700),
+          ),
         ),
       ),
     );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xFFe2f2f3);
+const kPrimaryColor = Color.fromARGB(255, 236, 234, 234);
 const kSecondaryColor = Color(0xFF0b1a31);
 const kLightBlue = Color(0xFF3e9bbd);
 const kLigterText = Color(0xFF626673);
+const kWhiteColor = Color.fromARGB(255, 255, 255, 255);
 
 const kSimpleTextStyle = TextStyle(
     fontSize: 16, fontWeight: FontWeight.w500, fontFamily: 'ProximaNova');
@@ -14,6 +15,11 @@ const kHeadingStyle = TextStyle(
   fontFamily: 'ProximaNova',
   fontWeight: FontWeight.w600,
 );
+
+const kMiniHeadingStyle = TextStyle(
+                  color: kSecondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold);
 const kMediumHeader = TextStyle(
   color: kPrimaryColor,
   fontSize: 18,
