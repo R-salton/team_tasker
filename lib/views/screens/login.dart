@@ -138,14 +138,7 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: GestureDetector(
-                      onTap: () async {
-                        try {
-                          _signInWithGoogle.signIn();
-                          print("Successfull signup");
-                        } catch (e) {
-                          print(e);
-                        }
-                      },
+                      onTap: () => _signInWithGoogle.signIn,
                       child: Image(
                         height: 40.h,
                         image: const AssetImage('assets/images/google.png'),

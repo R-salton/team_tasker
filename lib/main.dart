@@ -6,22 +6,13 @@ import 'package:team_tasker/views/screens/onboarding_page.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
 import 'package:team_tasker/views/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart'; // Import Firebase core
-import 'firebase_options.dart';
+
 
 void main() async {
-  // Ensures that all binding for widgets is initialized before Firebase
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  } catch (e) {
-    print('Firebase initialization error: $e');
-  }
-  runApp(
-    const MainApp(),
-  );
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {

@@ -6,9 +6,9 @@ class Auth {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   User? get currentUser => _firebaseAuth.currentUser;
 
-  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
+  // Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<User?> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
@@ -21,21 +21,16 @@ class Auth {
           await googleUser.authentication;
 
       // Step 3: Create a new credential with the Google access token and ID token
-      final AuthCredential credential = GoogleAuthProvider.credential(
+      final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
+      // final UserCredential userCredential =
 
-       final UserCredential userCredential =
-          await _firebaseAuth.signInWithCredential(credential);
-      final User? user = userCredential.user;
+      // final User? user = userCredential.user;
 
-      // You can access the user's information if needed
-      print("Google Sign-In successful: ${user?.displayName}");
-
-      return user;
-
+      return await _firebaseAuth.signInWithCredential(credential);
     } catch (e) {
       print(e);
     }

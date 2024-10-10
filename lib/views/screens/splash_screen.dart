@@ -5,18 +5,19 @@ import 'package:team_tasker/views/screens/onboarding_page.dart';
 
 class Splash extends StatelessWidget {
   const Splash({super.key});
-    static String id = "splashScreen";
-
+  static String id = "splashScreen";
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: Center(
-        child: Lottie.asset('assets/animation/Animation-1728200153667.json'),
+    return Scaffold(
+      body: AnimatedSplashScreen(
+        splash: Center(
+          child: Lottie.asset('assets/animation/Animation-1728200153667.json'),
+        ),
+        nextScreen: const OnBoardScreen(),
+        duration: 4200,
+        splashIconSize: 300,
       ),
-      nextScreen: const OnBoardScreen(),
-      duration: 4200,
-      splashIconSize: 300,
     );
   }
 }
