@@ -65,16 +65,21 @@ class MyTextField extends StatelessWidget {
   final hint;
   final bool obsecure;
   final inputType;
-  const MyTextField(
+  ValueChanged<String>? onChange;
+
+  MyTextField(
       {super.key,
       this.inputType,
       required this.obsecure,
       required this.controller,
-      required this.hint});
+      required this.hint,
+      required this.onChange});
 
   @override
   Widget build(BuildContext context) {
+    final textFieldData;
     return TextField(
+      onChanged: onChange,
       keyboardType: inputType,
       style: const TextStyle(
           color: kSecondaryColor, fontSize: 18, fontWeight: FontWeight.w600),

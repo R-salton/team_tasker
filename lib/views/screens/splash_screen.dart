@@ -14,7 +14,7 @@ class Splash extends StatelessWidget {
         splash: Center(
           child: Lottie.asset('assets/animation/Animation-1728200153667.json'),
         ),
-        nextScreen: const OnBoardScreen(),
+        nextScreen:  OnBoardScreen(),
         duration: 4200,
         splashIconSize: 300,
       ),

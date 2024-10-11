@@ -1,8 +1,13 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
+import 'package:team_tasker/model/Auth.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/home.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
 
 class Login extends StatefulWidget {
@@ -14,9 +19,26 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final AuthController _signInWithGoogle = AuthController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  String email = '';
+  String password = '';
+  // Auth authService = Auth();
+  final AuthController _authController = AuthController();
+  User? user;
+
+  Future<void> signIn() async {
+    setState(() {
+      email = _emailController.text;
+      password = _passwordController.text;
+    });
+    print(email);
+    user = await _authController.signInUser(
+      context: context,
+      email: email,
+      password: password,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +64,18 @@ class _LoginState extends State<Login> {
                   style: kMiniHeadingStyle,
                 ),
               ),
+
               SizedBox(
                 height: 35.h,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: MyTextField(
+                  onChange: (value) => {
+                    setState(() {
+                      email = value;
+                    })
+                  },
                   controller: _emailController,
                   hint: "Username",
                   obsecure: false,
@@ -59,6 +87,11 @@ class _LoginState extends State<Login> {
                     horizontal: 25.w,
                   ),
                   child: MyTextField(
+                    onChange: (value) => {
+                      setState(() {
+                        password = value;
+                      })
+                    },
                     controller: _passwordController,
                     hint: "Password",
                     obsecure: true,
@@ -91,7 +124,13 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Mybtn(
                   title: "Sign in",
-                  onTap: () {},
+                  onTap: () async {
+                    await _authController.signInUser(
+                      context: context,
+                      email: email,
+                      password: password,
+                    );
+                  },
                 ),
               ),
               SizedBox(
@@ -138,7 +177,10 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: GestureDetector(
-                      onTap: () => _signInWithGoogle.signIn,
+                      onTap: () async {
+                        await _authController.googleSign();
+                        Navigator.pushNamed(context, Home.id);
+                      },
                       child: Image(
                         height: 40.h,
                         image: const AssetImage('assets/images/google.png'),

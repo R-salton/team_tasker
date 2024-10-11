@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/home.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
-   static String id = "onboarding";
+  static String id = "onboarding";
 
   @override
   State<OnBoardScreen> createState() => _OnBoardScreenState();
@@ -15,9 +18,31 @@ class OnBoardScreen extends StatefulWidget {
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
   final PageController _controller = PageController();
-   
+  @override
+  _OnBoardScreenState createState() => _OnBoardScreenState();
 
+  final AuthController _authController = AuthController();
+
+  User? currentUser;
   bool onLastPage = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkCurrentUser();
+  }
+
+  void checkCurrentUser() async {
+    currentUser = await _authController.getCurrentUser();
+
+    // if (currentUser != null) {
+    //   Navigator.pushNamed(context, Home.id);
+    // } else {
+    //   Navigator.pushNamed(context, Login.id);
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,10 +89,12 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const Login();
-                          }));
+                          if (currentUser != null) {
+                            Navigator.pushNamed(context, Home.id,
+                                arguments: currentUser);
+                          } else {
+                            Navigator.pushNamed(context, Login.id);
+                          }
                         },
                         child: const Text('Skip', style: kMediumHeader),
                       ),
