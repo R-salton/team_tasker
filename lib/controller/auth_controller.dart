@@ -47,20 +47,11 @@ class AuthController {
     required String password,
     required BuildContext context,
   }) async {
-    try {
-      await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-        context: context,
-      );
-
-      
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.message); // Throw the error to be handled in UI
-    } catch (e) {
-      throw Exception("Unkown error");
-    }
-    return null;
+    return await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+      context: context,
+    );
   }
 
 // Log out USer

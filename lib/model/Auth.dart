@@ -89,7 +89,6 @@ class Auth {
       throw Exception(e.message);
     } catch (e) {
       throw Exception("An unknown error occurred");
-      
     }
   }
 
@@ -107,9 +106,11 @@ class Auth {
       );
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, Home.id, arguments: userCredential.user);
+    } on FirebaseAuthException catch (e) {
+      // Throw the error to be handled in the UI
+      throw Exception(e.message);
     } catch (e) {
-      print('Error signing in: $e');
-      return Navigator.pushNamed(context, Login.id, arguments: e.toString());
+      throw Exception('Error signing in: $e');
     }
     return null;
   }

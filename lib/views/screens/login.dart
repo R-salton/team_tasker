@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
-import 'package:team_tasker/model/Auth.dart';
+import 'package:team_tasker/views/components/error_handler.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/home.dart';
@@ -23,22 +22,23 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   String email = '';
   String password = '';
-  // Auth authService = Auth();
   final AuthController _authController = AuthController();
   User? user;
 
-  Future<void> signIn() async {
-    setState(() {
-      email = _emailController.text;
-      password = _passwordController.text;
-    });
-    print(email);
-    user = await _authController.signInUser(
-      context: context,
-      email: email,
-      password: password,
-    );
-  }
+  final GrobalMethods _globalMethods = GrobalMethods();
+
+  // Future<void> signIn() async {
+  //   setState(() {
+  //     email = _emailController.text;
+  //     password = _passwordController.text;
+  //   });
+  //   print(email);
+  //   user = await _authController.signInUser(
+  //     context: context,
+  //     email: email,
+  //     password: password,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -125,14 +125,64 @@ class _LoginState extends State<Login> {
                 child: Mybtn(
                   title: "Sign in",
                   onTap: () async {
-                    await _authController.signInUser(
-                      context: context,
-                      email: email,
-                      password: password,
-                    );
+                    try {
+                      User? user = await _authController.signInUser(
+                        context: context,
+                        email: email,
+                        password: password,
+                      );
+                    } catch (e) {
+                      if (e is FirebaseAuthException) {
+                        switch (e.code) {
+                          case 'wrong-password':
+                            _globalMethods.AuthError(
+                                "Wrong Password".replaceFirst('Excepetion', ''),
+                                context);
+                            break;
+                          case 'user-not-found':
+                            _globalMethods.AuthError(
+                                "User Not Found".replaceFirst('Excepetion', ''),
+                                context);
+                            break;
+                          case 'user-disabled':
+                            _globalMethods.AuthError(
+                                "User Disabled".replaceFirst('Excepetion', ''),
+                                context);
+                            break;
+                          case 'too-many-requests':
+                            _globalMethods.AuthError(
+                                "Too Many Requests", context);
+                            break;
+                          case 'operation-not-allowed':
+                            _globalMethods.AuthError(
+                                "Operation Not Allowed"
+                                    .replaceFirst('Excepetion:', ''),
+                                context);
+                            break;
+                          case 'invalid-email':
+                            _globalMethods.AuthError(
+                                "Invalid Email".replaceFirst('Excepetion:', ''),
+                                context);
+                            break;
+                          default:
+                            _globalMethods.AuthError(
+                                "An error occurred", context);
+                        }
+                      } else {
+                        print(e);
+                        // Handle non-FirebaseAuth exceptions if needed
+                        _globalMethods.AuthError(
+                            "$e."
+                                .replaceFirst('Exception:', '')
+                                .replaceFirst('malformed or has expired.', '')
+                                .replaceFirst(', ', ''),
+                            context);
+                      }
+                    }
                   },
                 ),
               ),
+
               SizedBox(
                 height: 25.h,
               ),

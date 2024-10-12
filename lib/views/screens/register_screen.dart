@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
+import 'package:team_tasker/views/components/error_handler.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/home.dart';
@@ -29,6 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final AuthController _auth = AuthController();
 
+  final GrobalMethods _grobalMethods = GrobalMethods();
+
   // @override
   // void dispose() {
   //   // Don't forget to dispose controllers when they are no longer needed
@@ -49,43 +51,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool isThereAnError = false;
 
   // Register the user
-  Future<void> _register() async {
-    setState(() {
-      firstName = _firstNameController.text;
-      lastName = _lastNameController.text;
-      email = _emailController.text;
-      password = _passwordController.text;
-      confirmPassword = _confirmPasswordController.text;
-    });
+  // Future<void> _register() async {
+  //   setState(() {
+  //     firstName = _firstNameController.text;
+  //     lastName = _lastNameController.text;
+  //     email = _emailController.text;
+  //     password = _passwordController.text;
+  //     confirmPassword = _confirmPasswordController.text;
+  //   });
 
-    print([firstName, lastName, email]);
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+  //   print([firstName, lastName, email]);
+  //   if (_formKey.currentState!.validate()) {
+  //     _formKey.currentState!.save();
 
-      if (password != confirmPassword) {
-        setState(() {
-          errorMessage = "Passwords do not match!";
-        });
-        return;
-      }
+  //     if (password != confirmPassword) {
+  //       setState(() {
+  //         errorMessage = "Passwords do not match!";
+  //       });
+  //       return;
+  //     }
 
-      User? user = await _authController.registerUser(
-        context: context,
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-      );
+  //     User? user = await _authController.registerUser(
+  //       context: context,
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //       email: email,
+  //       password: password,
+  //     );
 
-      if (user != null) {
-        Navigator.pushNamed(context, Home.id);
-      } else {
-        setState(() {
-          errorMessage = "Registration failed. Try again.";
-        });
-      }
-    }
-  }
+  //     if (user != null) {
+  //       Navigator.pushNamed(context, Home.id);
+  //     } else {
+  //       setState(() {
+  //         errorMessage = "Registration failed. Try again.";
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -262,9 +264,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         errorMessage = '';
                       });
                     } catch (e) {
-                      setState(() {
-                        errorMessage = e.toString();
-                      });
+                      if (e is FirebaseAuthException) {
+                        switch (e.code) {
+                          case 'ERROR_WEAK_PASSWORD':
+                            _grobalMethods.AuthError(
+                                "Password must be at least 6 characters"
+                                    .replaceFirst("Exception:", ""),
+                                context);
+                            break;
+
+                          case 'ERROR_EMAIL_ALREADY_IN_USE':
+                            _grobalMethods.AuthError(
+                                "Email is Alredy in use"
+                                    .replaceFirst("Exception:", ""),
+                                context);
+                            break;
+
+                          case 'ERROR_INVALID_EMAIL':
+                            _grobalMethods.AuthError(
+                                "Invalid email!, verify your email"
+                                    .replaceFirst("Exception:", ""),
+                                context);
+                            break;
+                          // Handle other error codes here
+                          default:
+                            _grobalMethods.AuthError(
+                                " ${e.message?.replaceFirst("Exception:", "")}",
+                                context);
+                        }
+                      } else {
+                        _grobalMethods.AuthError(
+                            e.toString().replaceFirst("Exception:", ""),
+                            context);
+                      }
+
+                      // setState(() {
+                      //   errorMessage = e.toString();
+                      // });
                     }
                   },
                 ),
