@@ -120,4 +120,16 @@ class Auth {
   Future<void> SignOut() async {
     _firebaseAuth.signOut();
   }
+
+  // Password Reset
+
+  Future ResetPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e);
+    } catch (e) {
+      throw Exception('Error resetting password: $e');
+    }
+  }
 }

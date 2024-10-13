@@ -132,3 +132,48 @@ class Mybtn extends StatelessWidget {
     );
   }
 }
+
+// Custom Simple AppBAr
+
+//  Function<Widget> simpleAppBar(String title) {
+
+// return (context) => AppBar(
+//         backgroundColor: kSecondaryColor,
+//         title: Text(
+//           title,
+//           style: TextStyle(
+//               color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+//         ),
+//         centerTitle: true,
+//         iconTheme: IconThemeData(color: kWhiteColor),
+//       );
+// }
+
+class SimpleAppBar extends StatefulWidget {
+  final String title;
+  const SimpleAppBar({super.key, required this.title});
+
+  @override
+  State<SimpleAppBar> createState() => _SimpleAppBarState();
+}
+
+class _SimpleAppBarState extends State<SimpleAppBar> {
+  get preferredSize => null;
+
+  @override
+  Widget build(BuildContext context) {
+    return PreferredSize(
+      preferredSize: preferredSize,
+      child: AppBar(
+        backgroundColor: kSecondaryColor,
+        title: Text(
+          widget.title,
+          style: TextStyle(
+              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+        ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: kWhiteColor),
+      ),
+    );
+  }
+}

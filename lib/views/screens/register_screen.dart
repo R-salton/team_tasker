@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
-import 'package:team_tasker/views/components/error_handler.dart';
+import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/home.dart';
@@ -31,16 +31,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final GrobalMethods _grobalMethods = GrobalMethods();
 
-  // @override
-  // void dispose() {
-  //   // Don't forget to dispose controllers when they are no longer needed
-  //   _firstNameController.dispose();
-  //   _lastNameController.dispose();
-  //   _emailController.dispose();
-  //   _passwordController.dispose();
-  //   _confirmPasswordController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    // Don't forget to dispose controllers when they are no longer needed
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   String firstName = '';
   String lastName = '';
@@ -50,54 +50,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String errorMessage = '';
   bool isThereAnError = false;
 
-  // Register the user
-  // Future<void> _register() async {
-  //   setState(() {
-  //     firstName = _firstNameController.text;
-  //     lastName = _lastNameController.text;
-  //     email = _emailController.text;
-  //     password = _passwordController.text;
-  //     confirmPassword = _confirmPasswordController.text;
-  //   });
-
-  //   print([firstName, lastName, email]);
-  //   if (_formKey.currentState!.validate()) {
-  //     _formKey.currentState!.save();
-
-  //     if (password != confirmPassword) {
-  //       setState(() {
-  //         errorMessage = "Passwords do not match!";
-  //       });
-  //       return;
-  //     }
-
-  //     User? user = await _authController.registerUser(
-  //       context: context,
-  //       firstName: firstName,
-  //       lastName: lastName,
-  //       email: email,
-  //       password: password,
-  //     );
-
-  //     if (user != null) {
-  //       Navigator.pushNamed(context, Home.id);
-  //     } else {
-  //       setState(() {
-  //         errorMessage = "Registration failed. Try again.";
-  //       });
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kSecondaryColor,
+        title: Text(
+          "Team Tasker",
+          style: TextStyle(
+              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+        ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: kWhiteColor),
+      ),
       backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SizedBox(
+                height: 15.h,
+              ),
               const Icon(
                 Icons.book_online,
                 size: 100,

@@ -58,4 +58,8 @@ class AuthController {
   Future<void> signOut() async {
     _auth.SignOut();
   }
+
+  Future resePassword(String email) async {
+    return await _auth.ResetPassword(email);
+  }
 }

@@ -3,9 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
-import 'package:team_tasker/views/components/error_handler.dart';
+import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/forgot_passwordPage.dart';
 import 'package:team_tasker/views/screens/home.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
 
@@ -27,28 +28,36 @@ class _LoginState extends State<Login> {
 
   final GrobalMethods _globalMethods = GrobalMethods();
 
-  // Future<void> signIn() async {
-  //   setState(() {
-  //     email = _emailController.text;
-  //     password = _passwordController.text;
-  //   });
-  //   print(email);
-  //   user = await _authController.signInUser(
-  //     context: context,
-  //     email: email,
-  //     password: password,
-  //   );
-  // }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kSecondaryColor,
+        title: Text(
+          "Team Tasker",
+          style: TextStyle(
+              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+        ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: kWhiteColor),
+      ),
       backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SizedBox(
+                height: 15.0,
+              ),
               const Icon(
                 Icons.lock,
                 size: 100,
@@ -104,18 +113,25 @@ class _LoginState extends State<Login> {
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      'Forgotten password?',
-                      style: TextStyle(color: kLigterText, fontSize: 16),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, ForgotPassworsPage.id),
+                      child: Text(
+                        'Forgotten password?',
+                        style: TextStyle(
+                            color: kLightBlue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 25.h,
+                height: 10.h,
               ),
 
               // Login Button
