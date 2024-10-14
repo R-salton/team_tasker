@@ -5,7 +5,6 @@ import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
-import 'package:team_tasker/views/screens/home.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
 class RegisterScreen extends StatefulWidget {

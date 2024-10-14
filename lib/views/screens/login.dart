@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
@@ -7,7 +6,7 @@ import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/forgot_passwordPage.dart';
-import 'package:team_tasker/views/screens/home.dart';
+import 'package:team_tasker/views/screens/MainScreen.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
 
 class Login extends StatefulWidget {
@@ -245,7 +244,7 @@ class _LoginState extends State<Login> {
                     child: GestureDetector(
                       onTap: () async {
                         await _authController.googleSign();
-                        Navigator.pushNamed(context, Home.id);
+                        Navigator.pushNamed(context, Mainscreen.id);
                       },
                       child: Image(
                         height: 40.h,

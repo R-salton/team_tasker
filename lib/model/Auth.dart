@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:team_tasker/views/screens/home.dart';
-import 'package:team_tasker/views/screens/login.dart';
+import 'package:team_tasker/views/screens/MainScreen.dart';
 
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -80,7 +79,7 @@ class Auth {
 
         signInWithEmailAndPassword(
             email: email, password: password, context: context);
-        Navigator.pushNamed(context, Home.id, arguments: user);
+        Navigator.pushNamed(context, Mainscreen.id, arguments: user);
       }
 
       return user;
@@ -105,7 +104,7 @@ class Auth {
         password: password,
       );
       // ignore: use_build_context_synchronously
-      Navigator.pushNamed(context, Home.id, arguments: userCredential.user);
+      Navigator.pushNamed(context, Mainscreen.id, arguments: userCredential.user);
     } on FirebaseAuthException catch (e) {
       // Throw the error to be handled in the UI
       throw Exception(e.message);

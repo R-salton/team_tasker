@@ -5,7 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
-import 'package:team_tasker/views/screens/home.dart';
+import 'package:team_tasker/views/screens/MainScreen.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
 class OnBoardScreen extends StatefulWidget {
@@ -90,7 +90,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                       GestureDetector(
                         onTap: () {
                           if (currentUser != null) {
-                            Navigator.pushNamed(context, Home.id,
+                            Navigator.pushNamed(context, MainScreen.id,
                                 arguments: currentUser);
                           } else {
                             Navigator.pushNamed(context, Login.id);

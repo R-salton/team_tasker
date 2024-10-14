@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
 class Home extends StatefulWidget {
-  User? user; 
+  User? user;
   Home({super.key, required this.user});
   static String id = 'Home';
 
@@ -34,6 +35,8 @@ class _HomeState extends State<Home> {
     } catch (e) {}
   }
 
+  final int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +52,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            Text('Home Screen'),
             GestureDetector(
               onTap: () async {
                 await _authController.signOut();

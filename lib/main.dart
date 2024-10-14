@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/forgot_passwordPage.dart';
-import 'package:team_tasker/views/screens/home.dart';
+import 'package:team_tasker/views/screens/MainScreen.dart';
 import 'package:team_tasker/views/screens/login.dart';
 import 'package:team_tasker/views/screens/onboarding_page.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
@@ -34,8 +34,8 @@ class MainApp extends StatelessWidget {
           OnBoardScreen.id: (context) => OnBoardScreen(),
           Login.id: (context) => const Login(),
           RegisterScreen.id: (context) => const RegisterScreen(),
-          Home.id: (context) => Home(user: null),
           ForgotPassworsPage.id: (context) => const ForgotPassworsPage(),
+          Mainscreen.id: (context) => Mainscreen(user: null)
         },
         title: 'Team Tasker',
         home: const Scaffold(

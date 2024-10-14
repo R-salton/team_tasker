@@ -16,6 +16,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   flutter_screenutil: ^5.9.3
   google_sign_in: ^6.2.1
+  iconsax: ^0.0.8
   lottie: ^3.1.2
   smooth_page_indicator: ^1.2.0+3
 
