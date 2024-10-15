@@ -19,8 +19,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
       padding: EdgeInsets.all(8.0),
       height: 60.h,
       decoration: BoxDecoration(
-        color: kSecondaryColor,
-      ),
+          color: kSecondaryColor,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15))),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(

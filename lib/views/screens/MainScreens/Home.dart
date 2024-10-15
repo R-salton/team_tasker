@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/CustomAppBar.dart';
@@ -47,25 +48,38 @@ class _HomeState extends State<Home> {
       backgroundColor: kPrimaryColor,
       appBar: CustomAppBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              child: Center(
-                child: Text(
-                  'Welcom home${currentUser?.email}',
-                  style: kSimpleTextStyle,
+        child: Container(
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    height: 150.h,
+                    child: Center(
+                      child: Text(
+                        'Welcom home${currentUser?.email}',
+                        style: kSimpleTextStyle,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                Text('Home Screen'),
+                GestureDetector(
+                  onTap: () async {
+                    await _authController.signOut();
+                    Navigator.pushNamed(context, Login.id);
+                  },
+                  child: Text('Logout'),
+                )
+              ],
             ),
-            Text('Home Screen'),
-            GestureDetector(
-              onTap: () async {
-                await _authController.signOut();
-                Navigator.pushNamed(context, Login.id);
-              },
-              child: Text('Logout'),
-            )
-          ],
+          ),
         ),
       ),
     );
