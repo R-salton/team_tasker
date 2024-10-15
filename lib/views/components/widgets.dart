@@ -77,7 +77,6 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldData;
     return TextField(
       onChanged: onChange,
       keyboardType: inputType,

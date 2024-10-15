@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   final AuthController _authController = AuthController();
   User? user;
 
-  final GrobalMethods _globalMethods = GrobalMethods();
+  final GlobalMethods _globalMethods = GlobalMethods();
 
   @override
   void dispose() {
@@ -38,16 +38,20 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: _globalMethods.TopNavBar('Sign In to your account'),
       appBar: AppBar(
-        backgroundColor: kSecondaryColor,
         title: Text(
-          "Team Tasker",
+          "Create  Account",
           style: TextStyle(
-              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+            color: kWhiteColor,
+            fontWeight: FontWeight.w700,
+          ),
         ),
+        automaticallyImplyLeading: false,
         centerTitle: true,
-        iconTheme: IconThemeData(color: kWhiteColor),
+        backgroundColor: kSecondaryColor,
       ),
+
       backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Center(

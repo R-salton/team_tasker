@@ -12,7 +12,11 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red,
-      body: Container(),
+      body: SafeArea(
+        child: Center(
+          child: Text('Profile Page'),
+        ),
+      ),
     );
   }
 }
