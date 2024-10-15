@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:team_tasker/views/constants/constants.dart';
@@ -13,16 +14,15 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+  User? _currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8.0),
-      height: 60.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+      height: 80.h,
       decoration: BoxDecoration(
-          color: kSecondaryColor,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(15),
-              bottomRight: Radius.circular(15))),
+          color: kPrimaryColor, borderRadius: BorderRadius.only()),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
@@ -30,17 +30,27 @@ class _CustomAppBarState extends State<CustomAppBar> {
           children: [
             Icon(
               Icons.menu,
-              color: Colors.white,
+              color: kSecondaryColor,
             ),
             Text(
               'Team Tasker',
               style: TextStyle(
-                  color: kWhiteColor,
+                  color: kSecondaryColor,
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
             ),
-            CircleAvatar(
-              child: Text('S'),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kSecondaryColor,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(100)),
+              height: 40,
+              width: 40,
+              child: CircleAvatar(
+                child: Text('NS'),
+              ),
             ),
           ],
         ),

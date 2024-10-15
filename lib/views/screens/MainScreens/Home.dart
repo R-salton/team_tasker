@@ -32,6 +32,12 @@ class _HomeState extends State<Home> {
     currentUser = ModalRoute.of(context)!.settings.arguments as User?;
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _authController.getCurrentUser();
+  }
+
   Future<void> _getCurrentUser() async {
     try {
       setState(() async {
@@ -54,18 +60,30 @@ class _HomeState extends State<Home> {
               children: [
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
                   child: Container(
                     decoration: BoxDecoration(
                       color: kSecondaryColor,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     height: 150.h,
-                    child: Center(
-                      child: Text(
-                        'Welcom home${currentUser?.email}',
-                        style: kSimpleTextStyle,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Welcom home${currentUser?.email}',
+                              style: TextStyle(color: kWhiteColor),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text('Manage your Teams any where'),
+                        )
+                      ],
                     ),
                   ),
                 ),
