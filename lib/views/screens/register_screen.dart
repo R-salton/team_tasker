@@ -28,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final AuthController _auth = AuthController();
 
-  final GrobalMethods _grobalMethods = GrobalMethods();
+  final GlobalMethods _grobalMethods = GlobalMethods();
 
   @override
   void dispose() {
@@ -52,16 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kSecondaryColor,
-        title: Text(
-          "Team Tasker",
-          style: TextStyle(
-              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
-        ),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: kWhiteColor),
-      ),
+      appBar: _grobalMethods.TopNavBar('Team Tasker'),
       backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Center(

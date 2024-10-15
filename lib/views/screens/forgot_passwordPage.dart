@@ -17,7 +17,7 @@ class ForgotPassworsPage extends StatefulWidget {
 class _ForgotPassworsPageState extends State<ForgotPassworsPage> {
   final TextEditingController _emalTextController = TextEditingController();
   final AuthController _auth = AuthController();
-  final GrobalMethods _grobalMethods = GrobalMethods();
+  final GlobalMethods _grobalMethods = GlobalMethods();
   String _email = '';
 
   @override

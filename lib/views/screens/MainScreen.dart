@@ -1,11 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/constants/constants.dart';
-import 'package:team_tasker/views/screens/Home.dart';
+import 'package:team_tasker/views/screens/MainScreens/Home.dart';
+import 'package:team_tasker/views/screens/MainScreens/add_taskScreen.dart';
+import 'package:team_tasker/views/screens/MainScreens/myTeamsScreen.dart';
 
-import 'package:team_tasker/views/screens/profilePage.dart';
+import 'package:team_tasker/views/screens/MainScreens/profilePage.dart';
+import 'package:team_tasker/views/screens/taskScreen.dart';
 
 class Mainscreen extends StatefulWidget {
   User? user;
@@ -37,38 +42,72 @@ class _MainscreenState extends State<Mainscreen> {
     } catch (e) {}
   }
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColor,
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (value) {
-          setState(() {
-            _selectedIndex = value;
-          });
-        },
-        destinations: [
-          NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
-          NavigationDestination(icon: Icon(Iconsax.profile), label: "Profile")
-        ],
+      bottomNavigationBar: Container(
+        child: SafeArea(
+          child: Container(
+            color: kSecondaryColor,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+              child: GNav(
+                tabBackgroundColor: const Color.fromARGB(66, 130, 131, 133),
+                backgroundColor: kSecondaryColor,
+                color: kLigterText,
+                textStyle:
+                    TextStyle(fontWeight: FontWeight.w700, color: kWhiteColor),
+                selectedIndex: _selectedIndex,
+                activeColor: kWhiteColor,
+                onTabChange: (value) {
+                  setState(() {
+                    _selectedIndex = value;
+                  });
+                },
+                gap: 5,
+                padding: EdgeInsets.all(16),
+                iconSize: 22,
+                tabs: [
+                  GButton(
+                    icon: Iconsax.task,
+                    text: 'Tasks',
+                  ),
+                  GButton(
+                    icon: Iconsax.add,
+                    text: 'Add Team',
+                  ),
+                  GButton(
+                    icon: Iconsax.home,
+                    text: 'Home',
+                  ),
+                  GButton(
+                    icon: Iconsax.people,
+                    text: 'My teams',
+                  ),
+                  GButton(
+                    icon: Icons.person,
+                    text: 'Profile',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
       body: SafeArea(
         child: IndexedStack(
           index: _selectedIndex,
           children: [
+            TasksScreen(),
+            AddTaskScreen(),
             Home(
               user: currentUser,
             ),
+            MyTeamsScreen(),
             ProfilePage(),
-            // GestureDetector(
-            //   onTap: () async {
-            //     await _authController.signOut();
-            //     Navigator.pushNamed(context, Login.id);
-            //   },
-            //   child: Text('Logout'),
-            // )
           ],
         ),
       ),

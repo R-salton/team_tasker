@@ -80,7 +80,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     images: Lottie.asset('assets/animation/boost.json'),
                     Color: kSecondaryColor,
                   )
-                ],
+                ], 
               ),
               Container(
                 alignment: const Alignment(0, 0.75),
@@ -90,7 +90,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                       GestureDetector(
                         onTap: () {
                           if (currentUser != null) {
-                            Navigator.pushNamed(context, MainScreen.id,
+                            Navigator.pushNamed(context, Mainscreen.id,
                                 arguments: currentUser);
                           } else {
                             Navigator.pushNamed(context, Login.id);
