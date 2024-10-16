@@ -70,18 +70,31 @@ class _HomeState extends State<Home> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Welcom home${currentUser?.email}',
-                              style: TextStyle(color: kWhiteColor),
-                            ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Text(
+                                  'Welcom home',
+                                  style: TextStyle(color: kWhiteColor),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text('${currentUser?.email}',
+                                    style: TextStyle(color: kWhiteColor)),
+                              ),
+                            ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text('Manage your Teams any where'),
+                        Expanded(
+                          child: Text(
+                            'Manage your Teams any where',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         )
                       ],
                     ),
