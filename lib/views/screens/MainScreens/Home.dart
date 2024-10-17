@@ -5,6 +5,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/CustomAppBar.dart';
 import 'package:team_tasker/views/components/grobal_methods.dart';
+import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
@@ -21,6 +22,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   User? currentUser;
+  late final Size size;
   final AuthController _authController = AuthController();
   final GlobalMethods _globalMethods = GlobalMethods();
 
@@ -50,11 +52,20 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    // This will provide total height and width of our screen
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: CustomAppBar(),
       body: SafeArea(
-        child: Text('Home'),
+        child: Column(
+          children: [
+            // ignore: sized_box_for_whitespace
+            HeaderWithSearch(size: size),
+
+            
+          ],
+        ),
       ),
     );
   }

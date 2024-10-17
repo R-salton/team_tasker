@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:team_tasker/views/constants/constants.dart';
 
@@ -172,6 +173,113 @@ class _SimpleAppBarState extends State<SimpleAppBar> {
         ),
         centerTitle: true,
         iconTheme: IconThemeData(color: kWhiteColor),
+      ),
+    );
+  }
+
+  //Home Header
+}
+
+class HeaderWithSearch extends StatelessWidget {
+  const HeaderWithSearch({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: SizedBox(
+        // It'll  take 20% of the screen height
+        height: size.height * 0.2,
+
+        child: Stack(
+          children: [
+            Container(
+              height: size.height * 0.2 - 27,
+              decoration: BoxDecoration(
+                color: kSecondaryColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(36),
+                  bottomRight: Radius.circular(36),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.w),
+                    child: Text(
+                      'Hi ! Salton',
+                      style: kHeadingStyle,
+                    ),
+                  ),
+
+                  // We may add other  widgets here
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 0,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 5.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: kWhiteColor,
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 10),
+                        blurRadius: 50,
+                        color: kSecondaryColor.withOpacity(0.23)),
+                  ],
+                ),
+                height: 54.h,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) {
+                          //add Search functionality
+                          // print(value);
+                        },
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: kSecondaryColor),
+                        decoration: InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: 'Search',
+                          hintStyle: TextStyle(
+                            color: kSecondaryColor.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Serach Icon
+
+                    Icon(
+                      Iconsax.search_normal,
+                      color: kSecondaryColor.withOpacity(0.5),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
