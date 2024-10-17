@@ -7,6 +7,7 @@ import 'package:team_tasker/views/components/CustomAppBar.dart';
 import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/PendingTask.dart';
 import 'package:team_tasker/views/screens/login.dart';
 
 class Home extends StatefulWidget {
@@ -55,18 +56,27 @@ class _HomeState extends State<Home> {
     // This will provide total height and width of our screen
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: kWhiteColor,
       appBar: CustomAppBar(),
       body: SafeArea(
         child: Column(
           children: [
             // ignore: sized_box_for_whitespace
             HeaderWithSearch(size: size),
-
-            
+            SizedBox(
+              height: 20.h,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25.w),
+              child: TitleWithMoreBtn(
+                title: 'Pending Tasks',
+              ),
+            )
           ],
         ),
       ),
     );
   }
 }
+
+

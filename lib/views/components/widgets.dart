@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/PendingTask.dart';
 
 class OnBoardWidget extends StatelessWidget {
   final Color;
@@ -149,36 +150,40 @@ class Mybtn extends StatelessWidget {
 //       );
 // }
 
-class SimpleAppBar extends StatefulWidget {
+class SimpleAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  const SimpleAppBar({super.key, required this.title});
+
+  const SimpleAppBar({required this.title, super.key});
 
   @override
   State<SimpleAppBar> createState() => _SimpleAppBarState();
+
+  // Implement the preferredSize getter here
+  @override
+  Size get preferredSize =>
+      const Size.fromHeight(kToolbarHeight); // Standard AppBar height
 }
 
 class _SimpleAppBarState extends State<SimpleAppBar> {
-  get preferredSize => null;
-
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: preferredSize,
-      child: AppBar(
-        backgroundColor: kSecondaryColor,
-        title: Text(
-          widget.title,
-          style: TextStyle(
-              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+    return AppBar(
+      backgroundColor: kSecondaryColor,
+      title: Text(
+        widget.title,
+        style: TextStyle(
+          color: kWhiteColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
         ),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: kWhiteColor),
       ),
+      centerTitle: true,
+      iconTheme: IconThemeData(color: kWhiteColor),
     );
   }
-
-  //Home Header
 }
+
+//Home Header
 
 class HeaderWithSearch extends StatelessWidget {
   const HeaderWithSearch({
@@ -191,7 +196,8 @@ class HeaderWithSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: SizedBox(
+      child: Container(
+        margin: EdgeInsets.only(bottom: 1.h),
         // It'll  take 20% of the screen height
         height: size.height * 0.2,
 
@@ -281,6 +287,38 @@ class HeaderWithSearch extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class TitleWithMoreBtn extends StatelessWidget {
+  String title;
+  TitleWithMoreBtn({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+        Spacer(),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: kSecondaryColor,
+          ),
+          child: GestureDetector(
+            onTap: () => Navigator.pushNamed(context, PendingTaskScreen.id),
+            child: Text(
+              'More',
+              style: TextStyle(color: kWhiteColor),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
