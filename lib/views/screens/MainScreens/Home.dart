@@ -54,64 +54,7 @@ class _HomeState extends State<Home> {
       backgroundColor: kPrimaryColor,
       appBar: CustomAppBar(),
       body: SafeArea(
-        child: Container(
-          child: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: kSecondaryColor,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    height: 150.h,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                child: Text(
-                                  'Welcom home',
-                                  style: TextStyle(color: kWhiteColor),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text('${currentUser?.email}',
-                                    style: TextStyle(color: kWhiteColor)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Manage your Teams any where',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Text('Home Screen'),
-                GestureDetector(
-                  onTap: () async {
-                    await _authController.signOut();
-                    Navigator.pushNamed(context, Login.id);
-                  },
-                  child: Text('Logout'),
-                )
-              ],
-            ),
-          ),
-        ),
+        child: Text('Home'),
       ),
     );
   }
