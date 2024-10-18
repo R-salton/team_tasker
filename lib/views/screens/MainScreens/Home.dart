@@ -2,13 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:team_tasker/controller/auth_controller.dart';
 import 'package:team_tasker/views/components/CustomAppBar.dart';
 import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/components/widgets.dart';
 import 'package:team_tasker/views/constants/constants.dart';
-import 'package:team_tasker/views/screens/PendingTask.dart';
-import 'package:team_tasker/views/screens/login.dart';
+import 'package:team_tasker/views/screens/taskDetails.dart';
 
 class Home extends StatefulWidget {
   User? user;
@@ -26,6 +27,7 @@ class _HomeState extends State<Home> {
   late final Size size;
   final AuthController _authController = AuthController();
   final GlobalMethods _globalMethods = GlobalMethods();
+  late PageController _pageController;
 
   @override
   void didChangeDependencies() {
@@ -39,6 +41,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _authController.getCurrentUser();
+    _pageController = PageController(); //
   }
 
   Future<void> _getCurrentUser() async {
@@ -50,6 +53,15 @@ class _HomeState extends State<Home> {
   }
 
   final int _selectedIndex = 0;
+
+  // Get the PageController
+  PageController get pageController => _pageController;
+
+  @override
+  void dispose() {
+    _pageController.dispose(); // Dispose of the controller when done
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +83,54 @@ class _HomeState extends State<Home> {
               child: TitleWithMoreBtn(
                 title: 'Pending Tasks',
               ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.h),
+              child: Container(
+                height: 80.h,
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(vertical: 5.h),
+                decoration: BoxDecoration(
+                  color: kWhiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 30,
+                      color: kSecondaryColor.withOpacity(.25),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: Image.asset('assets/images/google.png'),
+                  title: Container(
+                    child: Text(
+                      "Project Presentation",
+                      style: kMiniHeadingStyle,
+                    ),
+                  ),
+                  trailing: GestureDetector(
+                    onTap: () {
+                      QuickAlert.show(
+                        confirmBtnColor: kSecondaryColor,
+                        title: "Project Presentation",
+                        context: context,
+                        type: QuickAlertType.info,
+                        text: 'Buy two, get one free',
+                      );
+                    },
+                    child: Icon(
+                      Iconsax.arrow_right_1,
+                      color: kSecondaryColor,
+                      size: 30,
+                    ),
+                  ),
+                  subtitle: Text('Pending...'),
+                ),
+              ),
             )
           ],
         ),
@@ -78,5 +138,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-

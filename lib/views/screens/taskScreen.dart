@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:team_tasker/views/components/CustomAppBar.dart';
 import 'package:team_tasker/views/components/grobal_methods.dart';
 import 'package:team_tasker/views/screens/taskDetails.dart';

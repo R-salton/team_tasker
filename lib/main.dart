@@ -11,6 +11,7 @@ import 'package:team_tasker/views/screens/onboarding_page.dart';
 import 'package:team_tasker/views/screens/register_screen.dart';
 import 'package:team_tasker/views/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:team_tasker/views/screens/taskDetails.dart';
 import 'package:team_tasker/views/screens/taskScreen.dart';
 // Import Firebase core
 
@@ -21,8 +22,30 @@ void main() async {
   runApp(MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  late PageController _pageController; // Declare a PageController
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(); // Initialize the PageController
+  }
+
+  // Get the PageController
+  PageController get pageController => _pageController;
+
+  @override
+  void dispose() {
+    _pageController.dispose(); // Dispose of the controller when done
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +67,8 @@ class MainApp extends StatelessWidget {
           TasksScreen.id: (context) => TasksScreen(),
           AddTaskScreen.id: (context) => AddTaskScreen(),
           MyTeamsScreen.id: (context) => MyTeamsScreen(),
-          PendingTaskScreen.id: (value) => PendingTaskScreen()
+          PendingTaskScreen.id: (context) => PendingTaskScreen(),
+          TaskDetails.id: (context) => TaskDetails(controller: _pageController),
         },
         title: 'Team Tasker',
         home: const Scaffold(

@@ -15,10 +15,12 @@ dependencies:
     sdk: flutter
   flutter_dotenv: ^5.1.0
   flutter_screenutil: ^5.9.3
+  giffy_dialog: ^2.1.0
   google_nav_bar: ^5.0.6
   google_sign_in: ^6.2.1
   iconsax: ^0.0.8
   lottie: ^3.1.2
+  quickalert: ^1.1.0
   smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
