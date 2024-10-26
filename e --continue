@@ -1,0 +1,26 @@
+[33mbbe6baa[m[33m ([m[1;36mHEAD[m[33m)[m HEAD@{0}: rebase (continue) (edit): Home Screen
+[33m67dbed4[m HEAD@{1}: commit (amend): Bottom nav with routes
+[33m2205af9[m HEAD@{2}: rebase: fast-forward
+[33mf5673c0[m HEAD@{3}: rebase (start): checkout HEAD~3
+[33me9cf4e3[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: rebase (continue) (finish): returning to refs/heads/main
+[33me9cf4e3[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: rebase (continue) (edit): Home Screen
+[33me2c6c81[m HEAD@{6}: commit (amend): Home Screen
+[33m5959a45[m HEAD@{7}: rebase: fast-forward
+[33m2205af9[m HEAD@{8}: rebase (start): checkout HEAD~2
+[33m6afaf09[m HEAD@{9}: rebase (finish): returning to refs/heads/main
+[33m6afaf09[m HEAD@{10}: rebase (start): checkout HEAD~2
+[33m6afaf09[m HEAD@{11}: commit (amend): Home Screen
+[33m2f52f9b[m HEAD@{12}: commit: Home Screen
+[33m5959a45[m HEAD@{13}: commit: Home Screen
+[33m2205af9[m HEAD@{14}: commit: Bottom nav with routes
+[33mf5673c0[m HEAD@{15}: commit: bottom vanigation Bar
+[33m00c4306[m HEAD@{16}: merge refs/remotes/origin/main: Merge made by the 'ort' strategy.
+[33mf7e8d78[m HEAD@{17}: commit: Password reset
+[33mc854641[m HEAD@{18}: commit: Error Handling
+[33mb2ee52d[m HEAD@{19}: commit: User rgister& Login
+[33mf330ba9[m HEAD@{20}: commit: Connected fire base
+[33me055999[m HEAD@{21}: commit: Connected Firebase
+[33m8ae7473[m HEAD@{22}: commit: Register Screen
+[33m481fafc[m HEAD@{23}: commit: Login Screen
+[33mda798da[m HEAD@{24}: commit: Login Screen
+[33m99c0e5a[m HEAD@{25}: commit (initial): Team task start

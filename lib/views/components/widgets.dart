@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:team_tasker/views/constants/constants.dart';
+import 'package:team_tasker/views/screens/PendingTask.dart';
 
 class OnBoardWidget extends StatelessWidget {
   final Color;
@@ -148,31 +150,177 @@ class Mybtn extends StatelessWidget {
 //       );
 // }
 
-class SimpleAppBar extends StatefulWidget {
+class SimpleAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  const SimpleAppBar({super.key, required this.title});
+
+  const SimpleAppBar({required this.title, super.key});
 
   @override
   State<SimpleAppBar> createState() => _SimpleAppBarState();
+
+  // Implement the preferredSize getter here
+  @override
+  Size get preferredSize =>
+      const Size.fromHeight(kToolbarHeight); // Standard AppBar height
 }
 
 class _SimpleAppBarState extends State<SimpleAppBar> {
-  get preferredSize => null;
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: kSecondaryColor,
+      title: Text(
+        widget.title,
+        style: TextStyle(
+          color: kWhiteColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      centerTitle: true,
+      iconTheme: IconThemeData(color: kWhiteColor),
+    );
+  }
+}
+
+//Home Header
+
+class HeaderWithSearch extends StatelessWidget {
+  const HeaderWithSearch({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: preferredSize,
-      child: AppBar(
-        backgroundColor: kSecondaryColor,
-        title: Text(
-          widget.title,
-          style: TextStyle(
-              color: kWhiteColor, fontSize: 20, fontWeight: FontWeight.w700),
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(bottom: 1.h),
+        // It'll  take 20% of the screen height
+        height: size.height * 0.2,
+
+        child: Stack(
+          children: [
+            Container(
+              height: size.height * 0.2 - 27,
+              decoration: BoxDecoration(
+                color: kSecondaryColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(36),
+                  bottomRight: Radius.circular(36),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.w),
+                    child: Text(
+                      'Hi ! Salton',
+                      style: kHeadingStyle,
+                    ),
+                  ),
+
+                  // We may add other  widgets here
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 0,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 5.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: kWhiteColor,
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 10),
+                        blurRadius: 50,
+                        color: kSecondaryColor.withOpacity(0.23)),
+                  ],
+                ),
+                height: 54.h,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) {
+                          //add Search functionality
+                          // print(value);
+                        },
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: kSecondaryColor),
+                        decoration: InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: 'Search',
+                          hintStyle: TextStyle(
+                            color: kSecondaryColor.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Serach Icon
+
+                    Icon(
+                      Iconsax.search_normal,
+                      color: kSecondaryColor.withOpacity(0.5),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: kWhiteColor),
       ),
     );
   }
 }
+
+class TitleWithMoreBtn extends StatelessWidget {
+  String title;
+  TitleWithMoreBtn({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+        Spacer(),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: kSecondaryColor,
+          ),
+          child: GestureDetector(
+            onTap: () => Navigator.pushNamed(context, PendingTaskScreen.id),
+            child: Text(
+              'More',
+              style: TextStyle(color: kWhiteColor),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
