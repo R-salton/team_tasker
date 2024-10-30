@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 import 'package:team_tasker/views/components/CustomAppBar.dart';
 import 'package:team_tasker/views/components/Task_tile.dart';
-import 'package:team_tasker/views/components/grobal_methods.dart';
-import 'package:team_tasker/views/screens/MainScreens/Home.dart';
-import 'package:team_tasker/views/screens/taskDetails.dart';
+// import 'package:team_tasker/views/components/grobal_methods.dart';
+// import 'package:team_tasker/views/screens/MainScreens/Home.dart';
+// import 'package:team_tasker/views/screens/taskDetails.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
@@ -15,8 +16,8 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  final GlobalMethods _globalMethods = GlobalMethods();
-  final PageController _pageController = PageController();
+  // final GlobalMethods _globalMethods = GlobalMethods();
+  // final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _TasksScreenState extends State<TasksScreen> {
           child: SingleChildScrollView(
               child: Column(
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Center(
                 child: Container(
                   decoration: BoxDecoration(),

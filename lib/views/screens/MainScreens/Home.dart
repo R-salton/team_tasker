@@ -54,18 +54,60 @@ class _HomeState extends State<Home> {
     } catch (e) {}
   }
 
-  final int _selectedIndex = 0;
-
   // Get the PageController
   PageController get pageController => _pageController;
 
   //Selector for filter
-  bool _isSelected = true;
+
+// Track the selected chip index
+  int _selectedIndex = 0;
+
+  // Track the selected filter for database use
+  String _selectedFilter = "All tasks";
 
   @override
   void dispose() {
     _pageController.dispose(); // Dispose of the controller when done
     super.dispose();
+  }
+
+  // Sample filter options
+  final List<String> _filterOptions = [
+    'All tasks',
+    'Completed',
+    'Pending',
+    'In Progress',
+    'Overdue',
+    'Assigned'
+  ];
+
+  FilterChip _buildFilterChip(int index) {
+    return FilterChip(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25), // Adjust radius as needed
+      ),
+      showCheckmark: false,
+      side: BorderSide(
+        color: const Color.fromARGB(0, 0, 0, 0),
+      ),
+      selectedColor: kLigterText,
+      labelStyle: TextStyle(
+        color: _selectedIndex == index ? kWhiteColor : kSecondaryColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      ),
+      label: Text(_filterOptions[index]),
+      selected: _selectedIndex == index,
+      onSelected: (isSelected) {
+        setState(() {
+          _selectedIndex = isSelected ? index : _selectedIndex;
+          _selectedFilter =
+              _filterOptions[index]; // Update selected filter text
+          // Use _selectedFilter for filtering tasks in your database query
+        });
+      },
+    );
   }
 
   @override
@@ -88,82 +130,23 @@ class _HomeState extends State<Home> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      FilterChip(
-                        label: Text('All tasks'),
-                        selected: _isSelected,
-                        onSelected: (value) {
-                          setState(() {
-                            _isSelected = !_isSelected;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: List.generate(_filterOptions.length, (index) {
+                        return Row(
+                          children: [
+                            _buildFilterChip(index),
+                            SizedBox(
+                              width: 5,
+                            )
+                          ],
+                        );
+                      }),
+                    )),
+              ),
+              SizedBox(
+                height: 10.h,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
