@@ -68,7 +68,7 @@ class _MainAppState extends State<MainApp> {
           AddTaskScreen.id: (context) => AddTaskScreen(),
           MyTeamsScreen.id: (context) => MyTeamsScreen(),
           PendingTaskScreen.id: (context) => PendingTaskScreen(),
-          TaskDetails.id: (context) => TaskDetails(controller: _pageController),
+          TaskDetails.id: (context) => TaskDetails(),
         },
         title: 'Team Tasker',
         home: const Scaffold(

@@ -22,7 +22,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
       height: 80.h,
       decoration: BoxDecoration(
-          color: kPrimaryColor, borderRadius: BorderRadius.only()),
+          color: kPrimaryColor, borderRadius: BorderRadius.only(),
+          
+          ),
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Row(
