@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +26,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   User? currentUser;
-  late final Size size;
+  late final size;
   final AuthController _authController = AuthController();
   final GlobalMethods _globalMethods = GlobalMethods();
   late PageController _pageController;
@@ -57,6 +59,9 @@ class _HomeState extends State<Home> {
   // Get the PageController
   PageController get pageController => _pageController;
 
+  //Selector for filter
+  bool _isSelected = true;
+
   @override
   void dispose() {
     _pageController.dispose(); // Dispose of the controller when done
@@ -66,7 +71,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // This will provide total height and width of our screen
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: CustomAppBar(),
@@ -78,6 +83,87 @@ class _HomeState extends State<Home> {
               HeaderWithSearch(size: size),
               SizedBox(
                 height: 20.h,
+              ),
+
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      FilterChip(
+                        label: Text('All tasks'),
+                        selected: _isSelected,
+                        onSelected: (value) {
+                          setState(() {
+                            _isSelected = !_isSelected;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
@@ -127,5 +213,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
